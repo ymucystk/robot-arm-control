@@ -95,7 +95,7 @@ const JAKA_Zu_5 = (props)=>{
         <a-entity gltf-model="#JAKA_J2" position="0 0.12 0" rotation={`0 0 ${(90 + Number(j2_rotate))}`}>
           <a-entity gltf-model="#JAKA_J3" position="0.43 0 0" rotation={`0 0 ${j3_rotate}`}>
             <a-entity gltf-model="#JAKA_J4" position="0.3685 0 0" rotation={`0 0 ${90 + Number(j4_rotate)}`}>
-              <a-entity gltf-model="#JAKA_J5" position="0 -0.068 -0.114" rotation={`0 ${j5_rotate} 0`}>
+              <a-entity gltf-model="#JAKA_J5" position="0 -0.068 -0.114" rotation={`0 ${180 - Number(j5_rotate)} 0`}>
                 <a-entity gltf-model="#JAKA_J6" position="0 -0.0455 0.068" rotation={`0 0 ${j6_rotate}`}></a-entity>
               </a-entity>
             </a-entity>
