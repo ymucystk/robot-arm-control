@@ -38,7 +38,7 @@ export default function Home() {
         <a-plane position="0 0 0" rotation="-90 0 0" width="10" height="10" color="#7BC8A4" shadow></a-plane>
         <Assets/>
         <Select_Robot {...robotProps}/>
-        <a-entity id="rig" position="0 -1.2 1.2">
+        <a-entity id="rig" position="0 -1. 1.2" rotation="0 0 0">
           <a-camera id="camera" cursor="rayOrigin: mouse;"></a-camera>
         </a-entity>
       </a-scene>

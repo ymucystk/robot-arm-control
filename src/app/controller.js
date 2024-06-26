@@ -59,32 +59,32 @@ export default function Controller(props) {
 
   return (
     <div className="controller" >
-      <div class="mb-2">
+      <div className="mb-2">
         <select className="form-select" onChange={set_robotName} value={robotName}>
           {robotNameList.map((name,idx)=><option key={idx} value={name}>{name}</option>)}
         </select>
       </div>
-      <div class="mb-2">
+      <div className="mb-2">
         <label for="j1_rotate_number" className="form-label">J1 Deg</label>
         <input type="number" className="form-control" id="j1_rotate_number" value={j1_rotate} onChange={set_j1_rotate} min={-180} max={180}/>
       </div>
-      <div class="mb-2">
+      <div className="mb-2">
         <label for="j2_rotate_number" className="form-label">J2 Deg</label>
         <input type="number" className="form-control" id="j2_rotate_number" value={j2_rotate} onChange={set_j2_rotate} min={-180} max={180}/>
       </div>
-      <div class="mb-2">
+      <div className="mb-2">
         <label for="j3_rotate_number" className="form-label">J3 Deg</label>
         <input type="number" className="form-control" id="j3_rotate_number" value={j3_rotate} onChange={set_j3_rotate} min={-180} max={180}/>
       </div>
-      <div class="mb-2">
+      <div className="mb-2">
         <label for="j4_rotate_number" className="form-label">J4 Deg</label>
         <input type="number" className="form-control" id="j4_rotate_number" value={j4_rotate} onChange={set_j4_rotate} min={-180} max={180}/>
       </div>
-      <div class="mb-2">
+      <div className="mb-2">
         <label for="j5_rotate_number" className="form-label">J5 Deg</label>
         <input type="number" className="form-control" id="j5_rotate_number" value={j5_rotate} onChange={set_j5_rotate} min={-180} max={180}/>
       </div>
-      <div class="mb-2">
+      <div className="mb-2">
         <label for="j6_rotate_number" className="form-label">J6 Deg</label>
         <input type="number" className="form-control" id="j6_rotate_number" value={j6_rotate} onChange={set_j6_rotate} min={-180} max={180}/>
       </div>
