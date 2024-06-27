@@ -12,12 +12,39 @@ export default function Home() {
   const [j4_rotate,set_j4_rotate] = React.useState(0)
   const [j5_rotate,set_j5_rotate] = React.useState(0)
   const [j6_rotate,set_j6_rotate] = React.useState(0)
+  const [c_pos_x,set_c_pos_x] = React.useState(0)
+  const [c_pos_y,set_c_pos_y] = React.useState(-1)
+  const [c_pos_z,set_c_pos_z] = React.useState(1.2)
+  let registered = false
+
+  const robotChange = ()=>{
+    const get = (robotName)=>{
+      let changeIdx = robotNameList.findIndex((e)=>e===robotName) + 1
+      if(changeIdx >= robotNameList.length){
+        changeIdx = 0
+      }
+      return robotNameList[changeIdx]
+    }
+    set_robotName(get)
+  }
 
   React.useEffect(() => {
     if (typeof window !== "undefined") {
       require("aframe");
       setTimeout(set_rendered(true),1000)
       console.log('set_rendered')
+
+      if(!registered){
+        registered = true
+        AFRAME.registerComponent('robot-click', {
+          init: function () {
+            this.el.addEventListener('click', (evt)=>{
+              robotChange()
+              console.log('robot-click')
+            });
+          }
+        });
+      }
     }
   }, [typeof window])
 
@@ -38,7 +65,7 @@ export default function Home() {
         <a-plane position="0 0 0" rotation="-90 0 0" width="10" height="10" color="#7BC8A4" shadow></a-plane>
         <Assets/>
         <Select_Robot {...robotProps}/>
-        <a-entity id="rig" position="0 -1. 1.2" rotation="0 0 0">
+        <a-entity id="rig" position={`${c_pos_x} ${c_pos_y} ${c_pos_z}`} rotation="0 0 0">
           <a-camera id="camera" cursor="rayOrigin: mouse;"></a-camera>
         </a-entity>
       </a-scene>
@@ -89,8 +116,8 @@ const Assets = ()=>{
 
 const JAKA_Zu_5 = (props)=>{
   const {visible, j1_rotate, j2_rotate, j3_rotate, j4_rotate, j5_rotate, j6_rotate} = props
-  return (
-    <a-entity gltf-model="#JAKA_BASE" position="0 0 0" rotation="0 0 0" visible={visible}>
+  return (<>{visible?
+    <a-entity robot-click gltf-model="#JAKA_BASE" position="0 0 0" rotation="0 0 0" visible={visible}>
       <a-entity gltf-model="#JAKA_J1" position="0 0 0" rotation={`0 ${j1_rotate} 0`}>
         <a-entity gltf-model="#JAKA_J2" position="0 0.12 0" rotation={`0 0 ${(90 + Number(j2_rotate))}`}>
           <a-entity gltf-model="#JAKA_J3" position="0.43 0 0" rotation={`0 0 ${j3_rotate}`}>
@@ -102,14 +129,14 @@ const JAKA_Zu_5 = (props)=>{
           </a-entity>
         </a-entity>
       </a-entity>
-    </a-entity>
+    </a-entity>:null}</>
   )
 }
 
 const DOBOT_Nova_2 = (props)=>{
   const {visible, j1_rotate, j2_rotate, j3_rotate, j4_rotate, j5_rotate, j6_rotate} = props
-  return (
-    <a-entity gltf-model="#BASE_ASM" position="0 0 0" rotation="0 0 0" visible={visible}>
+  return (<>{visible?
+    <a-entity robot-click gltf-model="#BASE_ASM" position="0 0 0" rotation="0 0 0" visible={visible}>
       <a-entity gltf-model="#J1_ASM" position="0 0 0" rotation={`0 ${j1_rotate} 0`}>
         <a-entity gltf-model="#J2_ASM" position="0 0.218 0" rotation={`0 0 ${j2_rotate}`}>
           <a-entity gltf-model="#J3_ASM" position="0 0.28 0" rotation={`0 0 ${j3_rotate}`}>
@@ -121,14 +148,14 @@ const DOBOT_Nova_2 = (props)=>{
           </a-entity>
         </a-entity>
       </a-entity>
-    </a-entity>
+    </a-entity>:null}</>
   )
 }
 
 const Cobotta_PRO_900 = (props)=>{
   const {visible, j1_rotate, j2_rotate, j3_rotate, j4_rotate, j5_rotate, j6_rotate} = props
-  return (
-    <a-entity gltf-model="#base_link" position="0 0 0" rotation="-90 0 0" visible={visible}>
+  return (<>{visible?
+    <a-entity robot-click gltf-model="#base_link" position="0 0 0" rotation="-90 0 0" visible={visible}>
       <a-entity gltf-model="#j1" position="0 0 0.1" rotation={`0 0 ${j1_rotate}`}>
         <a-entity gltf-model="#j2" position="0 0 0.11" rotation={`0 ${-j2_rotate} 0`}>
           <a-entity gltf-model="#j3" position="0 0 0.51" rotation={`0 ${-j3_rotate} 0`}>
@@ -140,7 +167,7 @@ const Cobotta_PRO_900 = (props)=>{
           </a-entity>
         </a-entity>
       </a-entity>
-    </a-entity>
+    </a-entity>:null}</>
   )
 }
 
