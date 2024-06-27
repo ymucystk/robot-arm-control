@@ -15,6 +15,9 @@ export default function Home() {
   const [c_pos_x,set_c_pos_x] = React.useState(0)
   const [c_pos_y,set_c_pos_y] = React.useState(-1)
   const [c_pos_z,set_c_pos_z] = React.useState(1.2)
+  const [c_deg_x,set_c_deg_x] = React.useState(0)
+  const [c_deg_y,set_c_deg_y] = React.useState(0)
+  const [c_deg_z,set_c_deg_z] = React.useState(0)
   let registered = false
 
   const robotChange = ()=>{
@@ -51,7 +54,9 @@ export default function Home() {
   const controllerProps = {
     robotName, robotNameList, set_robotName,
     j1_rotate,set_j1_rotate,j2_rotate,set_j2_rotate,j3_rotate,set_j3_rotate,
-    j4_rotate,set_j4_rotate,j5_rotate,set_j5_rotate,j6_rotate,set_j6_rotate
+    j4_rotate,set_j4_rotate,j5_rotate,set_j5_rotate,j6_rotate,set_j6_rotate,
+    c_pos_x,set_c_pos_x,c_pos_y,set_c_pos_y,c_pos_z,set_c_pos_z,
+    c_deg_x,set_c_deg_x,c_deg_y,set_c_deg_y,c_deg_z,set_c_deg_z
   }
 
   const robotProps = {
@@ -65,7 +70,7 @@ export default function Home() {
         <a-plane position="0 0 0" rotation="-90 0 0" width="10" height="10" color="#7BC8A4" shadow></a-plane>
         <Assets/>
         <Select_Robot {...robotProps}/>
-        <a-entity id="rig" position={`${c_pos_x} ${c_pos_y} ${c_pos_z}`} rotation="0 0 0">
+        <a-entity id="rig" position={`${c_pos_x} ${c_pos_y} ${c_pos_z}`} rotation={`${c_deg_x} ${c_deg_y} ${c_deg_z}`}>
           <a-camera id="camera" cursor="rayOrigin: mouse;"></a-camera>
         </a-entity>
       </a-scene>
